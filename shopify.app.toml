@@ -1,3 +1,29 @@
-# This file stores configurations for your Shopify app.
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-scopes = "write_products,read_gates,write_gates,write_discounts"
+client_id = "c7fb37eb3dcb1589e7237cddbde2d175"
+name = "nainish-gate"
+handle = "nainish-gate"
+application_url = "https://morris-plugin-surgery-wide.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "quickstart-04de84f3.myshopify.com"
+include_config_on_deploy = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_gates,write_discounts,write_gates,write_products"
+
+[auth]
+redirect_urls = [
+  "https://morris-plugin-surgery-wide.trycloudflare.com/auth/callback",
+  "https://morris-plugin-surgery-wide.trycloudflare.com/auth/shopify/callback",
+  "https://morris-plugin-surgery-wide.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-07"
+
+[pos]
+embedded = false

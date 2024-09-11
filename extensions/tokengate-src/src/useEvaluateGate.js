@@ -1,13 +1,15 @@
 import { useMemo, useState, useCallback } from "react";
-import {
-  getGateContextClient,
-} from "@shopify/gate-context-client";
+import { getGateContextClient } from "@shopify/gate-context-client";
 
 // Set this to the ngrok url that is generated when you run the server
 // The url will be something like https://12345678.ngrok.io (no trailing slash or query params)
-export const host = "YOUR_NGROK_URL";
+export const host =
+  "https://admin.shopify.com/store/quickstart-04de84f3/apps/nainish-gate";
 
-if (host == "YOUR_NGROK_URL") {
+if (
+  host ==
+  "https://admin.shopify.com/store/quickstart-04de84f3/apps/nainish-gate"
+) {
   console.error(`
     ************************************************************
     You must set the host to your ngrok url in useEvaluateGate.js.
@@ -16,28 +18,27 @@ if (host == "YOUR_NGROK_URL") {
   `);
 }
 
-const gateContextClient =
-  getGateContextClient({
-    backingStore: "ajaxApi",
-    shopifyGateContextGenerator: async (data) => {
-      try {
-        const existing = await gateContextClient.read();
-        return mergeGateContext(existing, data);
-      } catch(e) {
-        return data;
-      }
+const gateContextClient = getGateContextClient({
+  backingStore: "ajaxApi",
+  shopifyGateContextGenerator: async (data) => {
+    try {
+      const existing = await gateContextClient.read();
+      return mergeGateContext(existing, data);
+    } catch (e) {
+      return data;
+    }
 
-      // merges existing gate context entries
-      function mergeGateContext(existing, add) {
-        const entriesById = existing.reduce((acc, item) => {
-          acc[item.id] = item;
-          return acc;
-        }, {});
-        add.forEach(item => entriesById[item.id] = item);
-        return Object.keys(entriesById).map(id => entriesById[id]);
-      }
-    },
-  });
+    // merges existing gate context entries
+    function mergeGateContext(existing, add) {
+      const entriesById = existing.reduce((acc, item) => {
+        acc[item.id] = item;
+        return acc;
+      }, {});
+      add.forEach((item) => (entriesById[item.id] = item));
+      return Object.keys(entriesById).map((id) => entriesById[id]);
+    }
+  },
+});
 
 export const useEvaluateGate = () => {
   const gate = getGate();
@@ -62,22 +63,22 @@ export const useEvaluateGate = () => {
       });
       const json = await response.json();
       setGateEvaluation(json);
-      gateContextClient.write(json.gateContext)
-        .catch(e => console.error('Failed to write to gate context'));
-
+      gateContextClient
+        .write(json.gateContext)
+        .catch((e) => console.error("Failed to write to gate context"));
     },
     [setGateEvaluation, gate]
   );
 
-  const {unlockingTokens, isLocked} = useMemo(() => {
-    const {unlockingTokens} = gateEvaluation || {};
+  const { unlockingTokens, isLocked } = useMemo(() => {
+    const { unlockingTokens } = gateEvaluation || {};
     const isLocked = !Boolean(unlockingTokens?.length);
 
     return {
       unlockingTokens,
       isLocked,
-    }
-  }, [gateEvaluation])
+    };
+  }, [gateEvaluation]);
 
   return {
     evaluateGate,
@@ -88,7 +89,7 @@ export const useEvaluateGate = () => {
 };
 
 // This function also present in App.jsx
-const getGate = () => window.myAppGates?.[0] || {}
+const getGate = () => window.myAppGates?.[0] || {};
 
 function getShopDomain() {
   return window.Shopify.shop;

@@ -11,7 +11,8 @@ import { publicProvider } from "wagmi/providers/public";
 import { useEvaluateGate } from "./useEvaluateGate";
 
 const _App = () => {
-  const { isLocked, unlockingTokens, evaluateGate, gateEvaluation } = useEvaluateGate();
+  const { isLocked, unlockingTokens, evaluateGate, gateEvaluation } =
+    useEvaluateGate();
   const { wallet } = useConnectWallet({
     onConnect: (wallet) => {
       evaluateGate(wallet);
@@ -45,14 +46,14 @@ export const App = () => {
 
 const getGate = () => window.myAppGates?.[0] || {};
 
-const {chains, publicClient, webSocketPublicClient} = configureChains(
+const { chains, publicClient, webSocketPublicClient } = configureChains(
   [mainnet],
-  [publicProvider()],
+  [publicProvider()]
 );
 
-const {connectors, wagmiConnectors} = buildConnectors({
+const { connectors, wagmiConnectors } = buildConnectors({
   chains,
-  projectId: 'YOUR_WALLET_CONNECT_PROJECT_ID',
+  projectId: "7a8e33209077f3caae9e1e416fd6f40f",
 });
 
 const config = createConfig({

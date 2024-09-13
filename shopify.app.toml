@@ -3,7 +3,7 @@
 client_id = "c7fb37eb3dcb1589e7237cddbde2d175"
 name = "nainish-gate"
 handle = "nainish-gate"
-application_url = "https://parliamentary-returns-minnesota-mainstream.trycloudflare.com"
+application_url = "https://risks-explore-effects-nickel.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_gates,write_discounts,write_gates,write_products"
 
 [auth]
 redirect_urls = [
-  "https://parliamentary-returns-minnesota-mainstream.trycloudflare.com/auth/callback",
-  "https://parliamentary-returns-minnesota-mainstream.trycloudflare.com/auth/shopify/callback",
-  "https://parliamentary-returns-minnesota-mainstream.trycloudflare.com/api/auth/callback"
+  "https://risks-explore-effects-nickel.trycloudflare.com/auth/callback",
+  "https://risks-explore-effects-nickel.trycloudflare.com/auth/shopify/callback",
+  "https://risks-explore-effects-nickel.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

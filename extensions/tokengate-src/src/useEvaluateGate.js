@@ -3,7 +3,8 @@ import { getGateContextClient } from "@shopify/gate-context-client";
 
 // Set this to the ngrok url that is generated when you run the server
 // The url will be something like https://12345678.ngrok.io (no trailing slash or query params)
-export const host = "https://risks-explore-effects-nickel.trycloudflare.com";
+export const host =
+  "https://floral-freebsd-announcement-messages.trycloudflare.com";
 
 if (host == "YOUR_NGROK_URL") {
   console.error(`

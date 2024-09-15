@@ -1,37 +1,17 @@
 <div
   id="tokengating-example-app"
   data-product_id="{{ product.id }}"
-  data-product_gated="{{ product.gated? }}"
->
-  Hello world app  text
+  data-product_gated="{{ product.gated? }}">
+  Tokengating example app block placeholder
 </div>
-<script>
-  window.myAppGates = [
-    {%- for gate in product.gates -%}
-      {%- if gate.configuration.handle == 'tokengating-example-app' -%}
-        {%- assign configuration = gate.configuration -%}
-        {
-          id: "{{ configuration.id }}",
-          name: "{{ configuration.name | escape }}",
-          requirements: {{ gate.configuration.metafields.tokengating-example-app.requirements }},
-          reaction: {{ gate.configuration.metafields.tokengating-example-app.reaction }}
-        },
-      {%- endif -%}
-    {%- endfor -%}
-  ];
-</script>
-
-{% comment %}
-  Script needs to be loaded as a module to be able to use import statements.
-{% endcomment %}
 <script async type="module" src="{{ "index.js" | asset_url }}"></script>
 <link rel="stylesheet" href="{{ "index.css" | asset_url }}">
 
 {% schema %}
-{
-  "name": "Tokengate",
-  "target": "section",
-  "templates": ["product"],
-  "settings": []
-}
+  {
+    "name": "Tokengate",
+    "target": "section",
+    "templates": ["product"],
+    "settings": []
+  }
 {% endschema %}

@@ -45,6 +45,7 @@ export const App = () => {
 };
 
 const getGate = () => window.myAppGates?.[0] || {};
+console.log(window.myAppGates, "myAppGates");
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [mainnet],

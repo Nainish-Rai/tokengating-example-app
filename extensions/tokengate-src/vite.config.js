@@ -1,14 +1,27 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import { nodePolyfills } from "vite-plugin-node-polyfills";
+import nodePolyfills from "vite-plugin-node-stdlib-browser";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [nodePolyfills(), react()],
   define: {
     global: "globalThis",
   },
+  optimizeDeps: {
+    // 👈 optimizedeps
+    esbuildOptions: {
+      target: "esnext",
+      // Node.js global to browser globalThis
+      define: {
+        global: "globalThis",
+      },
+      supported: {
+        bigint: true,
+      },
+    },
+  },
   build: {
+    target: ["esnext"],
     assetsDir: "",
     commonjsOptions: {
       transformMixedEsModules: true,
